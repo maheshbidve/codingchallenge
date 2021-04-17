@@ -7,8 +7,12 @@ public class BookingResponse {
 	private double economyRoomsAmount;
 	private double premiumRoomsAmount;
 
-	public BookingResponse(int occupiedEconomyRooms, int occupiedPremiumRooms, int economyRoomsAmount,
-			int premiumRoomsAmount) {
+	public BookingResponse() {
+		super();
+	}
+
+	public BookingResponse(int occupiedEconomyRooms, int occupiedPremiumRooms, double economyRoomsAmount,
+			double premiumRoomsAmount) {
 		super();
 		this.occupiedEconomyRooms = occupiedEconomyRooms;
 		this.occupiedPremiumRooms = occupiedPremiumRooms;

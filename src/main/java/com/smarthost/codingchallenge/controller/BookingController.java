@@ -13,7 +13,7 @@ import com.smarthost.codingchallenge.model.BookingResponse;
 import com.smarthost.codingchallenge.service.BookingService;
 
 @RestController
-@RequestMapping(path = "/bookings")
+@RequestMapping(path = "v1//bookings")
 @Validated
 public class BookingController {
 

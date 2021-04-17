@@ -26,7 +26,7 @@ public class CodingchallengeApplication {
 
 	@SuppressWarnings("deprecation")
 	@Bean
-	public List<Integer> guestData() throws Exception {
+	public List<Double> guestData() throws Exception {
 
 		Resource resource = new ClassPathResource("data/input");
 		InputStream inputStream = resource.getInputStream();
@@ -35,9 +35,9 @@ public class CodingchallengeApplication {
 
 		ObjectMapper objectMapper = new ObjectMapper().configure(JsonParser.Feature.ALLOW_TRAILING_COMMA, true);
 		final JsonNode jsonNode = objectMapper.readTree(data);
-		final Integer[] o = objectMapper.readerFor(Integer[].class).readValue(jsonNode);
-		final List<Integer> bids = Arrays.asList(o);
-		bids.sort(Comparator.comparingInt(b -> -b));
+		final Double[] o = objectMapper.readerFor(Double[].class).readValue(jsonNode);
+		final List<Double> bids = Arrays.asList(o);
+		bids.sort(Comparator.comparingDouble(b -> -b));
 		return bids;
 	}
 

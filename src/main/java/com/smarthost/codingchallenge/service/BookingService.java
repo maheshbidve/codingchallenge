@@ -17,13 +17,13 @@ public class BookingService {
 
 	@Autowired
 	@Qualifier("guestData")
-	private List<Integer> guestData;
+	private List<Double> guestData;
 
 	public BookingResponse calculate(int economyRooms, int premiumRooms) {
-		Map<Boolean, List<Integer>> map = guestData.stream()
+		Map<Boolean, List<Double>> map = guestData.stream()
 				.collect(partitioningBy(bid -> bid >= Constants.PREMIUM_ROOM_CUT_OFF));
-		List<Integer> premiumGuests = map.get(true);
-		List<Integer> economyGuests = map.get(false);
+		List<Double> premiumGuests = map.get(true);
+		List<Double> economyGuests = map.get(false);
 
 		// calculate premium number of rooms that can be allocated
 		int premiumRoomsAllocated = Math.min(premiumRooms, premiumGuests.size());
@@ -41,16 +41,16 @@ public class BookingService {
 		int regularEconomyRooms = Math.min(economyGuests.size() - numberOfUpgrades, economyRooms);
 
 		//calculate premium room income amount
-		int premiumRoomsAmount = premiumGuests.stream().limit(premiumRoomsAllocated).mapToInt(Integer::intValue)
+		Double premiumRoomsAmount = premiumGuests.stream().limit(premiumRoomsAllocated).mapToDouble(Double::doubleValue)
 				.sum();
 
 		//calculate upgraded room income amount
-		int upgradedRoomsAmount = economyGuests.stream().limit(numberOfUpgrades).mapToInt(Integer::intValue)
+		Double upgradedRoomsAmount = economyGuests.stream().limit(numberOfUpgrades).mapToDouble(Double::doubleValue)
 				.sum();
 
 		//calculate economy room income amount
-		int economyRoomsAmount = economyGuests.stream().skip(numberOfUpgrades).limit(regularEconomyRooms)
-				.mapToInt(Integer::intValue).sum();
+		Double economyRoomsAmount = economyGuests.stream().skip(numberOfUpgrades).limit(regularEconomyRooms)
+				.mapToDouble(Double::doubleValue).sum();
 
 		return new BookingResponse(regularEconomyRooms, premiumRoomsAllocated + numberOfUpgrades, economyRoomsAmount,
 				premiumRoomsAmount + upgradedRoomsAmount);
