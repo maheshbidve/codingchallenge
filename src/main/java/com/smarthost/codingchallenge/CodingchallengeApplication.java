@@ -26,14 +26,15 @@ public class CodingchallengeApplication {
 
 	@SuppressWarnings("deprecation")
 	@Bean
-	public List<Integer> guestData(ObjectMapper objectMapper) throws Exception {
+	public List<Integer> guestData() throws Exception {
 
 		Resource resource = new ClassPathResource("data/input");
 		InputStream inputStream = resource.getInputStream();
 		byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
 		String data = new String(bdata, StandardCharsets.UTF_8);
 
-		final JsonNode jsonNode = new ObjectMapper().configure(JsonParser.Feature.ALLOW_TRAILING_COMMA, true).readTree(data);
+		ObjectMapper objectMapper = new ObjectMapper().configure(JsonParser.Feature.ALLOW_TRAILING_COMMA, true);
+		final JsonNode jsonNode = objectMapper.readTree(data);
 		final Integer[] o = objectMapper.readerFor(Integer[].class).readValue(jsonNode);
 		final List<Integer> bids = Arrays.asList(o);
 		bids.sort(Comparator.comparingInt(b -> -b));
