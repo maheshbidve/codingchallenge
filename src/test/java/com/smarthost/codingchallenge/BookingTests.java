@@ -22,7 +22,7 @@ public class BookingTests {
 		assertEquals(response.getOccupiedPremiumRooms(), 3);
 		assertEquals(response.getOccupiedEconomyRooms(), 3);
 		assertEquals(response.getPremiumRoomsAmount(), 738);
-		assertEquals(response.getEconomyRoomsAmount(), 167);
+		assertEquals(response.getEconomyRoomsAmount(), 167.99);
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class BookingTests {
 		assertEquals(response.getOccupiedPremiumRooms(), 6);
 		assertEquals(response.getOccupiedEconomyRooms(), 4);
 		assertEquals(response.getPremiumRoomsAmount(), 1054);
-		assertEquals(response.getEconomyRoomsAmount(), 189);
+		assertEquals(response.getEconomyRoomsAmount(), 189.99);
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class BookingTests {
 		assertEquals(response.getOccupiedPremiumRooms(), 2);
 		assertEquals(response.getOccupiedEconomyRooms(), 4);
 		assertEquals(response.getPremiumRoomsAmount(), 583);
-		assertEquals(response.getEconomyRoomsAmount(), 189);
+		assertEquals(response.getEconomyRoomsAmount(), 189.99);
 	}
 
 }
